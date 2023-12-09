@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.util.List;
+
 @Entity
 @Table(name = "buyer",schema = "test5",catalog = "postgres")
 @Data
@@ -21,4 +23,6 @@ public class BuyerEntity {
     private Long id;
     private String name;
     private String email;
+    @OneToMany(mappedBy = "buyer",fetch = FetchType.LAZY)
+    private List<PurchaseEntity> purchases;
 }
