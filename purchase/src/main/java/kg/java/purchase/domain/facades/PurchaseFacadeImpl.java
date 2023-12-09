@@ -8,6 +8,8 @@ import kg.java.purchase.core.models.dtos.purchase.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PurchaseFacadeImpl implements PurchaseFacade {
     private final PurchaseService purchaseService;
@@ -34,5 +36,10 @@ public class PurchaseFacadeImpl implements PurchaseFacade {
     @Override
     public PurchaseDto findById(FindByIdPurchaseDto model) throws EntityNotFoundException {
         return purchaseService.findById(model);
+    }
+
+    @Override
+    public List<PurchaseDto> findByBuyerName(FindByBuyerNameDto model) {
+        return purchaseService.findByBuyerName(model);
     }
 }
