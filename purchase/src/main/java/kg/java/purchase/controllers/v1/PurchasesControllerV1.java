@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/purchase")
 public class PurchasesControllerV1 {
@@ -59,6 +61,15 @@ public class PurchasesControllerV1 {
         }
         catch (Exception e){
             return ResponseEntity.internalServerError().build();
+        }
+    }
+    @PostMapping("/buyerName")
+    public ResponseEntity<List<PurchaseDto>> findByBuyerName(@RequestBody FindByBuyerNameDto model) {
+        try {
+            return ResponseEntity.ok(purchaseFacade.findByBuyerName(model));
+        }
+        catch (Exception e){
+            return ResponseEntity.notFound().build();
         }
     }
 }
